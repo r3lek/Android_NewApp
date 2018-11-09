@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 
@@ -32,11 +34,26 @@ public class NewsRecyclerViewAdapter  extends RecyclerView.Adapter<NewsRecyclerV
 
         View view = inflater.inflate(R.layout.news_item, parent, shouldAttachToParentImmediately); //hopefully correct
         NewsViewHolder viewHolder = new NewsViewHolder(view);
+        //view.setOnClickListener();
+
         return viewHolder;
+
     }
 
     @Override
-    public void onBindViewHolder(NewsRecyclerViewAdapter.NewsViewHolder holder, int position) {
+    public void onBindViewHolder(NewsRecyclerViewAdapter.NewsViewHolder holder, final int position) {
+        //view.setOnClickListener();
+        
+        holder.url.setOnClickListener((new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri url = Uri.parse(mNewsItem.get(position).getUrl());
+
+                Intent i = new Intent(Intent.ACTION_VIEW, url);
+                i.setData(url);
+                mContext.startActivity(i);
+            }
+        }));
         holder.bind(position);
     }
 
@@ -49,20 +66,24 @@ public class NewsRecyclerViewAdapter  extends RecyclerView.Adapter<NewsRecyclerV
         TextView title;
         TextView description;
         TextView date;
+        TextView url;
 
 
         public NewsViewHolder(View itemView) {
             super(itemView);
             title = (TextView) itemView.findViewById(R.id.title);
-            description = (TextView) itemView.findViewById(R.id.description);
             date = (TextView) itemView.findViewById(R.id.date);
+            description = (TextView) itemView.findViewById(R.id.description);
+            url = (TextView) itemView.findViewById(R.id.url);
+
         }
 
         void bind(int listIndex) {
+
             title.setText(mNewsItem.get(listIndex).getTitle());
             description.setText(mNewsItem.get(listIndex).getDescription());
             date.setText(mNewsItem.get(listIndex).getPublishedAt());
-
+            url.setText(mNewsItem.get(listIndex).getUrl());
         }
     }
 }
