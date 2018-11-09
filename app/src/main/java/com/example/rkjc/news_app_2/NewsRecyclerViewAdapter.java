@@ -43,7 +43,7 @@ public class NewsRecyclerViewAdapter  extends RecyclerView.Adapter<NewsRecyclerV
     @Override
     public void onBindViewHolder(NewsRecyclerViewAdapter.NewsViewHolder holder, final int position) {
         //view.setOnClickListener();
-        
+
         holder.url.setOnClickListener((new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,6 +51,7 @@ public class NewsRecyclerViewAdapter  extends RecyclerView.Adapter<NewsRecyclerV
 
                 Intent i = new Intent(Intent.ACTION_VIEW, url);
                 i.setData(url);
+
                 mContext.startActivity(i);
             }
         }));
@@ -80,9 +81,9 @@ public class NewsRecyclerViewAdapter  extends RecyclerView.Adapter<NewsRecyclerV
 
         void bind(int listIndex) {
 
-            title.setText(mNewsItem.get(listIndex).getTitle());
-            description.setText(mNewsItem.get(listIndex).getDescription());
-            date.setText(mNewsItem.get(listIndex).getPublishedAt());
+            title.setText("Title"+ mNewsItem.get(listIndex).getTitle());
+            description.setText("Description"+ mNewsItem.get(listIndex).getDescription());
+            date.setText("Date:"+ mNewsItem.get(listIndex).getPublishedAt());
             url.setText(mNewsItem.get(listIndex).getUrl());
         }
     }
