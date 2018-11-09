@@ -44,17 +44,17 @@ public class NewsRecyclerViewAdapter  extends RecyclerView.Adapter<NewsRecyclerV
     public void onBindViewHolder(NewsRecyclerViewAdapter.NewsViewHolder holder, final int position) {
         //view.setOnClickListener();
 
-        holder.url.setOnClickListener((new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Uri url = Uri.parse(mNewsItem.get(position).getUrl());
-
-                Intent i = new Intent(Intent.ACTION_VIEW, url);
-                i.setData(url);
-
-                mContext.startActivity(i);
-            }
-        }));
+//        holder.url.setOnClickListener((new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Uri url = Uri.parse(mNewsItem.get(position).getUrl());
+//
+//                Intent i = new Intent(Intent.ACTION_VIEW, url);
+//                i.setData(url);
+//
+//                mContext.startActivity(i);
+//            }
+//        }));
         holder.bind(position);
     }
 
@@ -76,6 +76,20 @@ public class NewsRecyclerViewAdapter  extends RecyclerView.Adapter<NewsRecyclerV
             date = (TextView) itemView.findViewById(R.id.date);
             description = (TextView) itemView.findViewById(R.id.description);
             url = (TextView) itemView.findViewById(R.id.url);
+
+            itemView.setOnClickListener(
+                    (new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Uri urls = Uri.parse(url.getText().toString());
+
+                            Intent i = new Intent(Intent.ACTION_VIEW, urls);
+                            i.setData(urls);
+
+                            mContext.startActivity(i);
+                        }
+                    })
+            );
 
         }
 
