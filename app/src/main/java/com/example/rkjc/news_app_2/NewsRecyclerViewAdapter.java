@@ -14,14 +14,15 @@ import android.widget.TextView;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class NewsRecyclerViewAdapter  extends RecyclerView.Adapter<NewsRecyclerViewAdapter.NewsViewHolder> {
 
     Context mContext;
-    ArrayList<NewsItem> mNewsItem;
+    List<NewsItem> mNewsItem;
 
-    public NewsRecyclerViewAdapter(Context mContext, ArrayList<NewsItem> mNewsItem) {
+    public NewsRecyclerViewAdapter(Context mContext, List<NewsItem> mNewsItem) {
         this.mContext = mContext;
         this.mNewsItem = mNewsItem;
     }
@@ -56,6 +57,12 @@ public class NewsRecyclerViewAdapter  extends RecyclerView.Adapter<NewsRecyclerV
 //            }
 //        }));
         holder.bind(position);
+    }
+
+
+    public void setNewsItems(List<NewsItem> newsItems){
+        mNewsItem = newsItems;
+        notifyDataSetChanged();
     }
 
     @Override

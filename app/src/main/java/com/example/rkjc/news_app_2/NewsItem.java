@@ -25,6 +25,7 @@ Add these annotations
 
 @Entity(tableName = "news_item")
 public class NewsItem {
+
     @PrimaryKey(autoGenerate = true)
     private int id;
 

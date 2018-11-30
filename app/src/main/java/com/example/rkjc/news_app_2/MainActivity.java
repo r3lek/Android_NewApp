@@ -1,8 +1,11 @@
 package com.example.rkjc.news_app_2;
 
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.net.Network;
 import android.os.AsyncTask;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -19,10 +22,14 @@ import android.widget.Toast;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
+
+    //Hw2 code
+    private NewsItemViewModel newsItemViewModel;
+
 
     private EditText mSearchBoxEditText;
     private TextView mUrlDisplayTextView;
@@ -32,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
     private NewsRecyclerViewAdapter mAdapter;
-    private ArrayList<NewsItem> newsItems = new ArrayList<>();
+    private List<NewsItem> newsItems = new ArrayList<>();
 
 
     @Override
@@ -46,6 +53,17 @@ public class MainActivity extends AppCompatActivity {
         mAdapter = new NewsRecyclerViewAdapter(this, newsItems);
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        //Code for hw 2
+        newsItemViewModel = ViewModelProviders.of(this).get(NewsItemViewModel.class);
+        newsItemViewModel.getAllNews().observe(this, new Observer<List<NewsItem>>() {
+            @Override
+            public void onChanged(@Nullable List<NewsItem> newsItems) {
+                //Toast.makeText(MainActivity.this, "onChanged", Toast.LENGTH_SHORT).show(); //it does show toast
+                mAdapter.setNewsItems(newsItems);
+            }
+        });
+
 
 
 //        NetworkUtils.buildUrl();
@@ -64,10 +82,11 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int itemThatWasClickedId = item.getItemId();
         if (itemThatWasClickedId == R.id.action_search) {
-            URL url = NetworkUtils.buildUrl();
-            NewsQueryTask task = new NewsQueryTask();
-            task.execute(url);
+//            URL url = NetworkUtils.buildUrl();
+//            NewsQueryTask task = new NewsQueryTask();
+//            task.execute(url);
 
+            newsItems = newsItemViewModel.dbSync();
             return true;
         }
         return super.onOptionsItemSelected(item);
