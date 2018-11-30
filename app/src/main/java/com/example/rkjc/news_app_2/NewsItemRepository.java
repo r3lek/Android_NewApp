@@ -37,9 +37,9 @@ public class NewsItemRepository {
     }
 
     //sync database with api and remove everything inside db
-    private static class SyncDatabase extends AsyncTask<Void, Void, List<NewsItem>>{
+    public static class SyncDatabase extends AsyncTask<Void, Void, List<NewsItem>>{
         private NewsItemDao newsItemDao;
-       // private NewsItemRepository newsItemRepository;
+       //private NewsItemRepository newsItemRepository;
 
         private SyncDatabase(NewsItemDao newsItemDao){
             this.newsItemDao = newsItemDao;

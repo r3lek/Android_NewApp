@@ -24,11 +24,23 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.firebase.jobdispatcher.Constraint;
+import com.firebase.jobdispatcher.FirebaseJobDispatcher;
+import com.firebase.jobdispatcher.GooglePlayDriver;
+import com.firebase.jobdispatcher.Job;
+import com.firebase.jobdispatcher.Lifetime;
+import com.firebase.jobdispatcher.RetryStrategy;
+import com.firebase.jobdispatcher.Trigger;
 
 public class MainActivity extends AppCompatActivity {
 
     //Hw2 code
     private NewsItemViewModel newsItemViewModel;
+
+    //hw3
+    private FirebaseJobDispatcher jobDispatcher;
+    private static final String Job_Tag = "my_job_tag";
+
 
 
     private EditText mSearchBoxEditText;
@@ -75,6 +87,8 @@ public class MainActivity extends AppCompatActivity {
 //        }
         //NewsQueryTask task = new NewsQueryTask();
         //task.execute(myurl);
+
+        executeJobDispatcher();
 
     }
 
@@ -129,6 +143,38 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu, menu);
         return true;
+    }
+
+    public void executeJobDispatcher(){
+
+        jobDispatcher = new FirebaseJobDispatcher(new GooglePlayDriver(this));
+
+
+        Job job = jobDispatcher.newJobBuilder()
+                // Service will call from 'MyJobService'
+                .setService(FirebaseJobService.class)
+                // Will be 'my_job_tag'
+                .setTag(Job_Tag)
+                // Job will be executed through the lifetime of the application
+                .setRecurring(true)
+                // Set time of execution
+                .setLifetime(Lifetime.FOREVER)
+                // Sets the job to be repeated
+                .setTrigger(Trigger.executionWindow(0,30))
+                // overwrite an existing job with the same tag
+                .setReplaceCurrent(true)
+                // retry with exponential backoff
+                .setRetryStrategy(RetryStrategy.DEFAULT_LINEAR)
+                // sets constraints based on device status
+                .setConstraints(
+                        // only executes when device is on a network (does http request from news API)
+                        Constraint.ON_ANY_NETWORK
+                )
+                .build();
+
+        jobDispatcher.mustSchedule(job);
+        Toast.makeText(this, "Job Scheduled", Toast.LENGTH_LONG).show();
+        //Date of newest: 2018-11-29T22:26:10Z
     }
 
     //stating hw 3

@@ -9,7 +9,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
 
@@ -76,9 +79,15 @@ public class NewsRecyclerViewAdapter  extends RecyclerView.Adapter<NewsRecyclerV
         TextView date;
         TextView url;
 
+        ImageView imageView;
+
 
         public NewsViewHolder(View itemView) {
             super(itemView);
+
+            //image for picasso later
+            imageView = (ImageView) itemView.findViewById(R.id.imageView);
+
             title = (TextView) itemView.findViewById(R.id.title);
             date = (TextView) itemView.findViewById(R.id.date);
             description = (TextView) itemView.findViewById(R.id.description);
@@ -106,6 +115,7 @@ public class NewsRecyclerViewAdapter  extends RecyclerView.Adapter<NewsRecyclerV
             description.setText("Description"+ mNewsItem.get(listIndex).getDescription());
             date.setText("Date:"+ mNewsItem.get(listIndex).getPublishedAt());
             url.setText(mNewsItem.get(listIndex).getUrl());
+            Picasso.get().load(mNewsItem.get(listIndex).getUrlToImage()).fit().into(imageView);
         }
     }
 }
