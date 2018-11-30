@@ -160,7 +160,7 @@ public class MainActivity extends AppCompatActivity {
                 // Set time of execution
                 .setLifetime(Lifetime.FOREVER)
                 // Sets the job to be repeated
-                .setTrigger(Trigger.executionWindow(0,30))
+                .setTrigger(Trigger.executionWindow(10,10))
                 // overwrite an existing job with the same tag
                 .setReplaceCurrent(true)
                 // retry with exponential backoff

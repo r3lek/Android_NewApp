@@ -48,7 +48,8 @@ public class NewsItem {
     public String publishedAt;
 
 
-    public NewsItem(String author, String title, String description, String url, String urlToImage, String publishedAt) {
+    public NewsItem(int id, String author, String title, String description, String url, String urlToImage, String publishedAt) {
+        this.id = id;
         this.author = author;
         this.title = title;
         this.description = description;
@@ -58,8 +59,14 @@ public class NewsItem {
     }
 
     @Ignore
-    public NewsItem(){
+    public NewsItem(String author, String title, String description, String url, String urlToImage, String publishedAt) {
 
+        this.author = author;
+        this.title = title;
+        this.description = description;
+        this.url = url;
+        this.urlToImage = urlToImage;
+        this.publishedAt = publishedAt;
     }
 
     public String getAuthor() {

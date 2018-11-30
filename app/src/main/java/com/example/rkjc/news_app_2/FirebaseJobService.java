@@ -25,14 +25,14 @@ public class FirebaseJobService extends JobService {
 
 
     private static final String TAG = "FirebaseJobService";
-    //NewsItemRepository newsItemRepository;
+    NewsItemRepository newsItemRepository = new NewsItemRepository(this.getApplication());
     //NewsItemRepository.SyncDatabase syn;
 
     @Override
     public boolean onStartJob(final JobParameters jobParameters) {
         Log.d(TAG, "inside of the firebasejob class ");
-        Log.d(TAG, "Will this iterate??? ");
-        //NewsRepo.syncDB();
+        Log.d(TAG, "Will this iterate??? 111");
+        //newsItemRepository.syncDB();
         //NewsItemRepository NewsRepo;
         //NewsTask.newsUpdate();
 //        NewsRepo.syncDB();
@@ -40,41 +40,46 @@ public class FirebaseJobService extends JobService {
 
             @Override
             protected Object doInBackground(Object[] objects) {
-                //NewsRepo.API_to_DB_Synch();
+
                 Context context = FirebaseJobService.this;
                 //NewsTask.newsUpdate();
-                Log.d(TAG, "Will this iterate??? ");
-                NewsRepo.syncDB();
+                Log.d(TAG, "Will this iterate??? 222");
+                //newsItemRepository.syncDB();
+                //NewsRepo.syncDB();
                 return null;
             }
 
             @Override
             protected void onPostExecute(Object o) {
+                newsItemRepository.syncDB();
                 //NewsRepo.API_to_DB_Synch();
                 Log.d(TAG, "Will this iterate??? ");
-                NewsRepo.syncDB();
+                //NewsRepo.syncDB();
                 jobFinished(jobParameters, false);
             }
         };
+        mBackgroundTask.execute();
 //        //syn.execute();
 //
 //        //doBackgroundWork(jobParameters);
 //        Log.d(TAG, "After syncing db ");
 //
         return true;
+
+
     }
 
-    private void doBackgroundWork(final JobParameters jobParameters) {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                //repository.syncDB();
-                //syn.execute();
-                Log.d(TAG, "Job has finished syncing");
-                jobFinished(jobParameters, false);
-            }
-        }).start();
-    }
+//    private void doBackgroundWork(final JobParameters jobParameters) {
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                //repository.syncDB();
+//                //syn.execute();
+//                Log.d(TAG, "Job has finished syncing");
+//                jobFinished(jobParameters, false);
+//            }
+//        }).start();
+//    }
 
     @Override
     public boolean onStopJob(JobParameters jobParameters) {

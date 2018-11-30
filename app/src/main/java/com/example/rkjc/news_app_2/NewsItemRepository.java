@@ -16,7 +16,7 @@ public class NewsItemRepository {
 
     //Get all from db
     public NewsItemRepository(Application application){
-        NewsItemDatabase db = NewsItemDatabase.getDatabase(application.getApplicationContext());
+        NewsItemDatabase db = NewsItemDatabase.getDatabase(application);
         mNewsItemDao = db.newsItemDao();
         mAllNews = mNewsItemDao.loadAllNewsItems();
     }
