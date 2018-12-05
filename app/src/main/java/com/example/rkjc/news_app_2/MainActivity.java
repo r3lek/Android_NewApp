@@ -1,11 +1,16 @@
 package com.example.rkjc.news_app_2;
 
+import android.app.Notification;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.net.Network;
 import android.os.AsyncTask;
 import android.support.annotation.Nullable;
+import android.support.v4.app.NotificationCompat;
+import android.app.Notification;
+
+import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,6 +18,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -34,12 +40,18 @@ import com.firebase.jobdispatcher.Trigger;
 
 public class MainActivity extends AppCompatActivity {
 
+
+
     //Hw2 code
     private NewsItemViewModel newsItemViewModel;
 
     //hw3
     private FirebaseJobDispatcher jobDispatcher;
     private static final String Job_Tag = "my_job_tag";
+
+    //HW3 notification
+
+    private NotificationManagerCompat notificationManager;
 
 
 
@@ -52,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private NewsRecyclerViewAdapter mAdapter;
     private List<NewsItem> newsItems = new ArrayList<>();
+
 
 
     @Override
@@ -78,6 +91,9 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
+
+
 //        NetworkUtils.buildUrl();
 //        URL myurl = null;
 //        try {
@@ -90,7 +106,28 @@ public class MainActivity extends AppCompatActivity {
 
         executeJobDispatcher();
 
+
+
+        notificationManager = NotificationManagerCompat.from(this);
+
+        sendOnChannel1();
+
+
     }
+
+    public void sendOnChannel1() {
+        Notification notification = new NotificationCompat.Builder(this, Notify.CHANNEL_1_ID)
+                .setSmallIcon(R.drawable.ic_1)
+                .setContentTitle("This is a test notification")
+                .setContentText("Content Text")
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+                .build();
+
+        Log.d("NotifcationTAG", "Notification action!!!");
+        notificationManager.notify(1,notification);
+    }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -105,6 +142,7 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
 
     // DONE (1) Create a class called GithubQueryTask that extends AsyncTask<URL, Void, String>
     public class NewsQueryTask extends AsyncTask<URL, Void, String>{

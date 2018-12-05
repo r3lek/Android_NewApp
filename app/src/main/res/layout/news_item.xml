@@ -6,6 +6,13 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+    <!--<Button-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Send on channel 1"-->
+        <!--android:onClick="sendOnChannel1"-->
+        <!--/>-->
+    
     <android.support.v7.widget.CardView
         xmlns:android="http://schemas.android.com/apk/res/android"
         style="@style/CardView.Light"
