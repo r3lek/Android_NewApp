@@ -140,10 +140,12 @@ public class FRecyclerViewAdapter  extends RecyclerView.Adapter<FRecyclerViewAda
         }
 
         void bind(int listIndex) {
+
+            epicUserHandle.setText("\n\n\n\nUsername: " + mNewsItem.get(listIndex).getEpicUserHandle());
             soloWins.setText("SOLO WINS: " + mNewsItem.get(listIndex).getSoloWins());
-            soloKD.setText("SOLO WINS: " + mNewsItem.get(listIndex).getSoloKD());
-            soloMatches.setText("SOLO WINS: " + mNewsItem.get(listIndex).getSoloMatches());
-            soloKills.setText("SOLO WINS: " + mNewsItem.get(listIndex).getSoloKills());
+            soloKD.setText("SOLO KD: " + mNewsItem.get(listIndex).getSoloKD());
+            soloMatches.setText("SOLO Matches: " + mNewsItem.get(listIndex).getSoloMatches());
+            soloKills.setText("SOLO Kills: " + mNewsItem.get(listIndex).getSoloKills());
             soloKPG.setText("SOLO KPG: " + mNewsItem.get(listIndex).getSoloKPG());
 
             duosWins.setText("DUOS WINS: " + mNewsItem.get(listIndex).getDuosWins());

@@ -2,75 +2,282 @@
 
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     android:background="@drawable/border"
-    android:padding="10dip">
+    android:padding="100px">
 
     <TextView
         android:id="@+id/epicUserHandle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <TextView
-        android:id="@+id/soloWins"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textColor="#BBDEFB"
+        android:text="TEST"
+        android:textSize="50px"
+        android:layout_height="100dp" />
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <TextView
-        android:id="@+id/soloKD"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/soloWins"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="0.5"
+            android:background="#80d6ff"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:gravity="center"
+            android:text="textview1"
+            />
+
+        <TextView
+            android:id="@+id/soloKD"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="0.5"
+            android:background="#80d6ff"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:gravity="center"
+            android:text="textview2" />
+    </LinearLayout>
+
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/soloKills"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="0.5"
+            android:background="#80d6ff"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:gravity="center"
+            android:text="textview1" />
+
+        <TextView
+            android:id="@+id/soloKPG"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="0.5"
+            android:background="#80d6ff"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:gravity="center"
+            android:text="textview2" />
+    </LinearLayout>
+
     <TextView
         android:id="@+id/soloMatches"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <TextView
-        android:id="@+id/soloKills"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textColor="#BBDEFB"
+        android:text="TEST"
+        android:textSize="50px"
+        android:layout_height="100dp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <TextView
-        android:id="@+id/soloKPG"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/duoWins"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="0.5"
+            android:background="#80d6ff"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:gravity="center"
+            android:text="textview1"
+            />
+
+        <TextView
+            android:id="@+id/duoKD"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="0.5"
+            android:background="#80d6ff"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:gravity="center"
+            android:text="textview2" />
+    </LinearLayout>
+
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <TextView
-        android:id="@+id/duoWins"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <TextView
-        android:id="@+id/duoKD"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/duoKills"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="0.5"
+            android:background="#80d6ff"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:gravity="center"
+            android:text="textview1" />
+
+        <TextView
+            android:id="@+id/duoKPG"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="0.5"
+            android:background="#80d6ff"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:gravity="center"
+            android:text="textview2" />
+    </LinearLayout>
+
+
+
     <TextView
         android:id="@+id/duoMatches"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <TextView
-        android:id="@+id/duoKills"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textColor="#BBDEFB"
+        android:text="TEST"
+        android:textSize="50px"
+        android:layout_height="100dp" />
+
+
+
+
+
+
+
+
+
+
+
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <TextView
-        android:id="@+id/duoKPG"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/squadWins"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="0.5"
+            android:background="#80d6ff"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:gravity="center"
+            android:text="textview1"
+            />
+
+        <TextView
+            android:id="@+id/squadKD"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="0.5"
+            android:background="#80d6ff"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:gravity="center"
+            android:text="textview2" />
+    </LinearLayout>
+
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <TextView
-        android:id="@+id/squadWins"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <TextView
-        android:id="@+id/squadKD"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/squadKills"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="0.5"
+            android:background="#80d6ff"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:gravity="center"
+            android:text="textview1" />
+
+        <TextView
+            android:id="@+id/squadKPG"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="0.5"
+            android:background="#80d6ff"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:gravity="center"
+            android:text="textview2" />
+    </LinearLayout>
+
+
+
     <TextView
         android:id="@+id/squadMatches"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <TextView
-        android:id="@+id/squadKills"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <TextView
-        android:id="@+id/squadKPG"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textColor="#BBDEFB"
+        android:text="TEST"
+        android:textSize="50px"
+        android:layout_height="100dp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
