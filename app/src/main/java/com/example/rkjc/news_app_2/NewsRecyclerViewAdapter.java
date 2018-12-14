@@ -72,10 +72,10 @@ public class NewsRecyclerViewAdapter  extends RecyclerView.Adapter<NewsRecyclerV
 
         public NewsViewHolder(View itemView) {
             super(itemView);
-            title = (TextView) itemView.findViewById(R.id.title);
-            date = (TextView) itemView.findViewById(R.id.date);
-            description = (TextView) itemView.findViewById(R.id.description);
-            url = (TextView) itemView.findViewById(R.id.url);
+//            title = (TextView) itemView.findViewById(R.id.title);
+//            date = (TextView) itemView.findViewById(R.id.date);
+//            description = (TextView) itemView.findViewById(R.id.description);
+//            url = (TextView) itemView.findViewById(R.id.url);
 
             itemView.setOnClickListener(
                     (new View.OnClickListener() {

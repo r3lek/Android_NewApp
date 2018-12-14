@@ -32,7 +32,18 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
     private NewsRecyclerViewAdapter mAdapter;
+
+
+    //USE THIS
+    private RecyclerView fRecyclerView;
+    private FRecyclerViewAdapter fAdapter;
+
+
+
     private ArrayList<NewsItem> newsItems = new ArrayList<>();
+
+    private ArrayList<PlayerStatsAL> player = new ArrayList<>();
+
 
 
     @Override
@@ -40,12 +51,21 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mSearchResultsTextView = (TextView) findViewById(R.id.date);
+        mSearchBoxEditText = (EditText) findViewById(R.id.et_search_box);
 
-        mRecyclerView = (RecyclerView)findViewById(R.id.news_recyclerview);
-        mAdapter = new NewsRecyclerViewAdapter(this, newsItems);
-        mRecyclerView.setAdapter(mAdapter);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+//        mSearchResultsTextView = (TextView) findViewById(R.id.date);
+
+        //mRecyclerView = (RecyclerView)findViewById(R.id.news_recyclerview);
+        fRecyclerView = (RecyclerView)findViewById(R.id.news_recyclerview);
+
+
+        fAdapter = new FRecyclerViewAdapter(this, player);
+        //mAdapter = new NewsRecyclerViewAdapter(this, newsItems);
+        fRecyclerView.setAdapter(fAdapter);
+        fRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+//        mRecyclerView.setAdapter(mAdapter);
+//        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
 
 //        NetworkUtils.buildUrl();
@@ -64,9 +84,14 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int itemThatWasClickedId = item.getItemId();
         if (itemThatWasClickedId == R.id.action_search) {
-            URL url = NetworkUtils.buildUrl();
-            NewsQueryTask task = new NewsQueryTask();
-            task.execute(url);
+            Log.d("EDITING", mSearchBoxEditText.getText().toString());
+            //HERE CALL FORTNITE
+            URL statURL = FNetworkUtils.buildURLStats(mSearchBoxEditText.getText().toString());
+            NewsQueryTask t = new NewsQueryTask();
+
+//            URL url = NetworkUtils.buildUrl();
+//            NewsQueryTask task = new NewsQueryTask();
+            t.execute(statURL);
 
             return true;
         }
@@ -86,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
         protected String doInBackground(URL... urls) {
             String githubSearchResults = "";
             try {
-                githubSearchResults = NetworkUtils.getResponseFromHttpUrl(urls[0]);
+                githubSearchResults = FNetworkUtils.getResponseFromHttpUrl(urls[0]);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -98,9 +123,19 @@ public class MainActivity extends AppCompatActivity {
             Log.d("mycode", s);
             super.onPostExecute(s);
             //mProgressBar.setVisibility(View.GONE);
-            newsItems = JsonUtils.parseNews(s);
-            mAdapter.mNewsItem.addAll(newsItems);
-            mAdapter.notifyDataSetChanged();
+            player = JSONPlayerUtils.parseNews(s);
+            //newsItems = JsonUtils.parseNews(s);
+
+            fAdapter.mNewsItem.addAll(player);
+            fAdapter.notifyDataSetChanged();
+
+
+
+
+
+//
+//            mAdapter.mNewsItem.addAll(newsItems);
+//            mAdapter.notifyDataSetChanged();
         }
     }
 
